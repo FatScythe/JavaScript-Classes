@@ -1,0 +1,41 @@
+body {
+	margin: 10px;
+	padding: 5px;
+	font-family: sans-serif;
+	display: grid;
+	place-items: center;
+}
+
+.error {
+	border-left: 5px solid red;
+	background: #777;
+	color: #fff;
+	padding: 10px 2px;
+}
+
+.success {
+	border-left: 5px solid green;
+	background: #777;
+	color: #fff;
+	padding: 10px 2px;
+}
+
+.mouseover {
+	font-size: 100px;
+	color: blue;
+}
+
+.mouseout {
+	font-size: 20px;
+	color: green;
+}
+
+div.to-do ul li {
+	max-width: 350px;
+	border: 1px solid black;
+	background: #eee;
+	padding: 10px;
+	margin: 10px;
+	list-style: none;
+	cursor: pointer;
+}
