@@ -47,7 +47,7 @@ let email = 'holadhayo28@gmail.com';
 // let index = email.replace('h','q');
 
 
-let numbers = ['9', '2', '33'];
+// let numbers = ['9', '2', '33'];
 
 // for(i = 0; i < numbers.length; i++){
 //     console.log('Code is running', i);
@@ -1080,6 +1080,266 @@ form.addEventListener('keyup', e => {
         inputBorder.setAttribute('class', 'formError');
     }
 });
+
+// To scroll the user back to the top after submitting so they can see their scores
+// scrollTo(0,0);
+
+// Windows Object (Mother of all object);
+// It is mother of all objetcts in frontend JS
+// We donot need to write it out since it is inferred already
+
+// console.log(window);
+
+// window.console.log('hello');
+
+// window.alert('Hello');
+
+// scrollTo(x,y)
+// This method scrolls the page to whatever coordinate its given
+// window.scrollTo(0,0);
+
+// setTimeout(() => {}, time in milliseconds)
+// e.g : After 5 Secs the user sees an alert, and it only fires the callBack once
+// setTimeout(() => {
+//  alert('Hello, there')
+// }, 3000);
+
+// setInterval()
+// unlike the setTimeout() method it doesnot fire once rather it keeps firing until a clearInterval() method is specified 
+// e.g
+
+// setInterval(() => {
+//     console.log('hello');
+// }, 2000);
+
+// clearInterval() is usually coupled with a variable to set as a condition
+
+// let i = 0;
+
+// const timer = setInterval(() => {
+//     console.log('hello');
+//     i++;
+//     if(i === 5){
+//         clearInterval(timer);
+//     }
+// }, 1000);
+
+//Array Method
+// Filter Method
+
+// let scores = [20, 5, 57, 86, 35, 10, 42];
+
+// const filteredScores = scores.filter((score) => {
+    // return score >= 20;
+    // return true;
+// });
+
+// console.log(Boolean(filteredScores));
+// console.log(filteredScores);
+
+// Filter method fires a call back function and it returns true, it is also non-destructive.
+
+// const users = [
+//     {name : 'Fahm', premium : true},
+//     {name : 'Moon', premium : false},
+//     {name : 'Sharaf', premium : true},
+//     {name : 'Qamardeen', premium : false}
+// ];
+
+// const premiumUsers = users.filter( user => user.premium );
+
+// console.log(premiumUsers);
+
+// Map Method
+// It Updates an array and array to give a new array
+
+// let prices = [20, 40, 30, 80, 10, 5];
+
+// const dicountPrices = prices.map((price) => {
+//     return price / 2;
+// });
+
+// console.log(dicountPrices);
+
+//It is non-destructive
+
+// console.log(prices);
+
+// const products = [
+//     {name: 'Semo', price: 400},
+//     {name: 'Ata', price: 350},
+//     {name: 'Maggi', price: 50},
+//     {name: 'Ewedu', price: 100},
+//     {name: 'Eja', price: 300},
+//     {name: 'Epo', price: 150},
+// ];
+
+// discountProducts = products.map((product) => {
+//     if(product.price >= 300){
+        // This is non-destructive because we are creating a new object
+        // return {name: product.name, price: product.price/ 2};
+
+        // This is destructive
+        // product.price = product.price / 2;
+        // return product;
+//     } else {
+//         return product;
+//     }
+// })
+
+// console.log(discountProducts, products);
+
+
+// Reduce Method 
+
+// let scores = [20, 30 , 50, 70, 80, 95];
+// E.g To get the no of scores above 20
+
+// const result = scores.reduce((accumulator, current) => {
+    // NB: current is the score
+//     if(current > 20) {
+//        accumulator++;
+//     };
+//     return accumulator;
+
+// }, 0);
+// NB: Zero is the intial accumulator
+
+// console.log(result);
+// 5
+
+// Addition of fahm scores
+// const players = [
+//         {name : 'Fahm', score : 90},
+//         {name : 'Moon', score : 90},
+//         {name : 'Sharaf', score : 50},
+//         {name : 'Qamardeen', score : 90},
+//         {name : 'Fahm', score : 40},
+//         {name : 'Fahm', score : 90},
+//         {name : 'Moon', score : 90},
+//         {name : 'Sharaf', score : 50},
+//         {name : 'Qamardeen', score : 90},
+//         {name : 'Fahm', score : 40}
+//     ];
+
+// const result = players.reduce((acc, curr) => {
+//         if(curr.name === 'Fahm') {
+//             acc += curr.score;
+//         };
+
+//         return acc;
+//     }, 0); 
+
+// console.log(result);
+
+
+// Find Method
+// It returns the first value inside an array that passes a condition
+
+// const scores = [20, 30 , 50, 70, 80, 95];
+
+// const result = scores.find(score => score > 50);
+
+// console.log(result);
+
+// Sort method and reverse method
+ const names = ['Omolewa', 'Fahm', 'Abiola', 'Qudus', 'Fardah', 'Sharaf'];
+
+//  names.sort();
+// names.reverse()
+ // they are both  destructive method
+//  console.log(names);
+
+//  let scores = [30, 5, 20, 50, 70, 80, 95];
+
+//  scores.sort()
+//  console.log(scores); // It doesnot give a current answer because the sort method only compare the first character of the number. Hence 20 < 5
+//  To solve this we must first understand a sort(a,b) method(go below players)
+ 
+// scores.sort((a,b) => {
+//     if(a > b){
+//         return -1;
+//     } else if (b > a) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
+// });
+
+// OR
+
+// scores.sort((a,b) => b-a);
+
+// console.log(scores);
+
+
+// const players = [
+//             {name : 'Fahm', score : 40},
+//             {name : 'Moon', score : 50},
+//             {name : 'Sharaf', score : 50},
+//             {name : 'Qamardeen', score : 80},
+//             {name: 'Furqan', score: 20}
+//         ];
+
+// players.sort(); //This will not work as it doesn't know what to sort for, to tackle this:
+
+// To sort based on scores
+// players.sort((a,b) => {
+    // a and b are two consecutive objects in the array
+    // if(a.score > b.score) {
+        // i.e for any 2 consecutive data in an array, if the score of the top one 'a' is greater than the bottom one 'b', 'return -1' meaning a.score wil be above b.score
+        // return -1;
+    // } else if(b.score > a.score) {
+        // i.e vice-versa and 'return +1' means b.score will be above a.score
+        // return 1;
+    // } else {
+        // return 0;
+        // i.e if a and b are equal put them together
+    // }
+// });
+
+// console.log(players);
+
+//OR an even better way to do this
+
+// players.sort((a,b) => b.score - a.score); // It checks out since it can either return -ve, +ve or 0
+
+// console.log(players);
+
+// CHAINING ARRAY METHODS TOGETHER
+
+// const products = [
+//         {name: 'Semo', price: 400},
+//         {name: 'Ata', price: 350},
+//         {name: 'Maggi', price: 50},
+//         {name: 'Ewedu', price: 100},
+//         {name: 'Eja', price: 300},
+//         {name: 'Epo', price: 150},
+//     ];
+    
+    // The hold method required assigning methods to a more than one variable
+
+// const filteredProducts = products.filter(product => product.price > 50);
+
+// const promos = filteredProducts.map(product => `The price of ${product.name} = ${product.price / 2}`);
+
+
+// CHAINING METHOD
+// const promos = products.
+//     filter(product => product.price > 50)
+//     .map(product => `The promo price of ${product.name} is ${product.price / 2}`);
+
+// When chaining it's best pratice to put each chain on a new line and indent them
+// console.log(promos);
+
+
+
+
+
+
+
+
+
 
 
 
