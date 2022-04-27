@@ -1332,8 +1332,73 @@ form.addEventListener('keyup', e => {
 // When chaining it's best pratice to put each chain on a new line and indent them
 // console.log(promos);
 
+// Dates and Time
+const now = new Date();
+
+// console.log(now);
+// console.log('getFullYear:', now.getFullYear());
+// It will return the following as position in an array with January and Sunday being 0
+// console.log('getMonth:', now.getMonth());
+// console.log('getDay:', now.getDay());
+
+// console.log('getDate:', now.getDate());
+// console.log('getHours:', now.getHours());
+// console.log('getMinute:', now.getMinutes());
+// console.log('getSeconds:', now.getSeconds());
+
+// TimeStamp : get the milliseconds from 12am, 1st of Jan 1970 till now
+// console.log('Timestamp:', now.getTime());
+
+// Usecase: Timestamp and comparison. Say we had a blogpost 
+// and we wished to out how many days ago it was written e.g 
+
+// const before = new Date('5 April 2022 9:30:12');
+
+// const diff = now.getTime() - before.getTime();
+
+// const seconds = Math.round(diff / 1000);
+// const minutes = Math.round(seconds / 60);
+// const hours = Math.round(minutes / 60);
+// const days = Math.round(hours / 24);
+
+// console.log(now, before, diff);
+// console.log('Difference in second btw the two days', seconds);
+// console.log('Difference in minutes btw the two days', minutes);
+// console.log('Difference in hours btw the two days', hours);
+// console.log('Difference in days btw the two days', days);
+
+// Hence in a blogPost we can have something like 
+// console.log(`This Blog was written by Abdullahi Fahm, ${days} days ago`);
+
+// Date String: to get specific portion of the getFullYear() in a string format
+// console.log("Today's Date ", now.toDateString());
+// console.log(now.toTimeString());
+// console.log(now.toLocaleString());
+
+// Using DateFns CDN to format dates in JavaScript
 
 
+
+
+
+
+
+
+
+// Asychronous JavaScript
+// Since JS is a single threaded language i.e it runs the one above before the one below, which means if let say we are trying to get data from a database in a series of code 
+// It won't run the next line of code until the data as been gotten, this creates a problem because then what if it takes a few seconds... that might seem small but if we getting multiple
+// data sets from different database, then that seconds might become minutes
+// Async JS offers a non - blocking method of writing codes, a simple example is as shown below
+
+console.log(1);
+console.log(2);
+// If we use a setTimeout() and fire a callback function this will make this single thread async
+setTimeout(() => {
+    console.log('This callback function was fired after 2secs');
+}, 2000);
+console.log(3);
+console.log(4);
 
 
 
