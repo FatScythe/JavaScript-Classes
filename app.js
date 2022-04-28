@@ -1066,7 +1066,7 @@ form.addEventListener('submit', e => {
         feedback.style.display = 'block';
         feedback.textContent = 'The username must contain letters, numbers and be between 6 and 16 character';
     }
-})
+});
 
 // Keyboard Event: Live Feedback
 // Keyup i.e When a key is released
@@ -1391,17 +1391,43 @@ const now = new Date();
 // data sets from different database, then that seconds might become minutes
 // Async JS offers a non - blocking method of writing codes, a simple example is as shown below
 
-console.log(1);
-console.log(2);
+// console.log(1);
+// console.log(2);
+
 // If we use a setTimeout() and fire a callback function this will make this single thread async
-setTimeout(() => {
-    console.log('This callback function was fired after 2secs');
-}, 2000);
-console.log(3);
-console.log(4);
+
+// setTimeout(() => {
+//     console.log('This callback function was fired after 2secs');
+// }, 2000);
+// console.log(3);
+// console.log(4);
 
 
+// HTTP Request
+// Creating a request object
+const request = new XMLHttpRequest();
 
+// To track the progress of our request we can use the event listener readystatechange
+
+request.addEventListener('readystatechange', () => {
+    console.log(request, request.readyState);
+    // request.readyState get us the state that the current is in, there are 4 values
+    // 0 : 'UNSENT' when we have created the open() but not sent it 
+    // 1 : 'OPENED' when open() has been Called
+    // 2 : 'HEADERS_RECEIVED' when send() has been Called
+    // 3 : 'LOADING' when its downloading the data but its not complete yet
+    // 4 : 'DONE' when it is completed
+
+    if(request.readyState === 4) {
+        console.log(request.responseText);
+    }
+});
+
+request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+// for the first argument: We can also use POST to send data, PUT to update, and the 2nd is the endpoint of the data
+
+// To actually send the request we use the send()
+request.send();
 
 
 
