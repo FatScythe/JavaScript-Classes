@@ -1405,12 +1405,13 @@ const now = new Date();
 
 // HTTP Request
 // Creating a request object
-const request = new XMLHttpRequest();
+// const request = new XMLHttpRequest();
 
 // To track the progress of our request we can use the event listener readystatechange
 
-request.addEventListener('readystatechange', () => {
-    console.log(request, request.readyState);
+// request.addEventListener('readystatechange', () => {
+    // console.log(request, request.readyState);
+
     // request.readyState get us the state that the current is in, there are 4 values
     // 0 : 'UNSENT' when we have created the open() but not sent it 
     // 1 : 'OPENED' when open() has been Called
@@ -1418,16 +1419,371 @@ request.addEventListener('readystatechange', () => {
     // 3 : 'LOADING' when its downloading the data but its not complete yet
     // 4 : 'DONE' when it is completed
 
-    if(request.readyState === 4) {
-        console.log(request.responseText);
-    }
-});
+// Response text is the data gotten from the Endpoint
 
-request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
-// for the first argument: We can also use POST to send data, PUT to update, and the 2nd is the endpoint of the data
+// Response Status: Gives the status of the endpoint, it ranges from 100 - 500+. With 100 -199 meaning Information Responses, 200 - 299 meaning Succesful responses, 300 - 399 meaning Redirection messages, 400- 499 meaning Client error responses(Browser error or something wrong with code), 500 - 599 meaning server error responses(Not our fault its from the server)
+
+//     if(request.readyState === 4 && request.status === 200) {
+//         console.log(request.responseText);
+//     } else if(request.readyState === 4) {
+//         console.log('error 404: could not fetch the data'); 
+//     } else {
+
+//     }
+// });
+
+// request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+// for the first argument: It is a method, We can also use POST to send data, PUT to update, and the 2nd is the endpoint of the data
 
 // To actually send the request we use the send()
-request.send();
+// request.send();
+
+
+
+
+// To make the above HTTPRequest reusable and asynchronous we fire it in a call back function
+
+// const fetchData = (messages) => {
+//     const request = new XMLHttpRequest;
+
+//     request.addEventListener('readystatechange', () => {
+
+//         if(request.readyState === 4 && request.status === 200) {
+            // console.log(request.responseText);
+
+            // JSON: Check Below for more details
+
+            // let data = JSON.parse(request.responseText);           
+
+            // messages(undefined, data);
+        // } else if(request.readyState === 4) {
+            // console.log('error 404');
+            // messages('error 404', undefined);
+        // }
+
+    // });
+
+    // request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+
+    // Using local JSON file
+    // request.open('GET', 'JSON/file.json');
+
+    // request.send();
+// }
+
+
+// fetchData((err, data) => {
+//     console.log('callback fired');
+//     if(err) {
+//         console.log(err);
+//     } else{
+//         console.log(data);
+//     }
+// });
+
+// Now the above code can be async
+
+// console.log(1);
+// console.log(2);
+
+// fetchData((err, data) => {
+//     console.log('callback fired');
+//     if(err) {
+//         console.log(err);
+//     } else{
+//         console.log(data);
+//     }
+// });
+
+// console.log(3);
+// console.log(4);
+
+
+// JSON (JavaScript Object Notation)
+//It is not an object rather a string that looks like JS object Unlike JS object its key-value pair are always stored in double quote, except for Numbers and boolean 
+// E.g check JSON file
+// To change JSON file to javascript object you need use the JSON.parse('url or HTTP here') and store it in a variable;
+
+
+
+
+// CALLBACK HELL
+// At times while requesting data from a data base we might need to request another from a different database in a specific order
+
+// const fetchData = (resources, messages) => {
+//     const request = new XMLHttpRequest;
+
+//     request.addEventListener('readystatechange', () => {
+//         // console.log(request, request.readyState);
+
+//         if(request.readyState === 4 && request.status === 200) {
+//             let data = JSON.parse(request.responseText);
+//             messages(undefined, data);
+
+//         } else if(request.readyState === 4){
+//             messages('error: 404', undefined);
+//         }
+//     });
+
+
+//     request.open('GET', resources);
+
+//     request.send();
+// }
+
+
+
+// fetchData('JSON/file2.json', (err, data) => {
+//     console.log('callback fired!!!');
+    // console.log(data);
+    // if(err){
+    //     console.log(err);
+    // } else {
+    //     console.log(data);
+    // }
+
+    // fetchData('JSON/file.json', (err, data) => {
+    //     console.log(data);
+
+    //     fetchData('JSON/file3.json', (err, data) => {
+    //         console.log(data);
+    //     });
+    // });
+
+// });
+
+// NB: Notice we are getting our data sequentially but it is nested in each other, if there were more code there it would be really messy,
+ // this is what is known as CALLBACK HELLL!!!
+
+
+
+// PROMISE BASICS
+
+// const fetchData = (resources) => {
+//     const request = new XMLHttpRequest;
+
+//     return new Promise((resolve, reject) => {
+
+//         request.addEventListener('readystatechange', () => {
+
+//             if(request.readyState === 4 && request.status === 200) {
+//                 let data = JSON.parse(request.responseText);
+//                 resolve(data);
+
+//             } else if(request.readyState === 4){
+//              // messages('error: 404', undefined);
+//                 reject('error: 404')
+//             }
+
+//     });
+
+//     request.open('GET', resources);
+
+//     request.send();
+//     });
+
+// }
+
+
+// fetchData('JSON/file.json').then((data) => {
+//     console.log('Promise resolved', data);
+// }, (err) => {
+//     console.log('Promise rejected',err);
+// });
+
+// OR a better way to write this 
+
+// fetchData('JSON/file.json').then(data => {
+//     console.log('Promise resolved', data);
+// }).catch(err => {
+//    console.log('Promise rejected',err); 
+// });
+
+
+// CHAINING PROMISES
+// Unlike the callback method where were just calling callbacks inside callback,
+// this method only requires returning a promise then use the then and catch keyword
+
+
+// const fetchData = (resources) => {
+//     const request = new XMLHttpRequest;
+
+//     return new Promise ((resolve, reject) => {
+
+//         request.addEventListener('readystatechange', () => {
+//             if(request.readyState === 4 && request.status === 200) {
+//                 let data = JSON.parse(request.responseText);
+//                 // console.log(data);
+//                 resolve(data);
+//             } else if(request.readyState === 4) {
+//                 // console.log('error fetching data');
+//                 reject('error fetching data');
+//         }
+
+//         });
+        
+//         request.open('GET', resources);
+//         request.send();
+
+//     });    
+// }
+
+// fetchData('JSON/file.json').then(data => {
+//     console.log('Promise 1 resolved', data);
+//     return fetchData('JSON/file.json');
+// }).then(data => {
+//     console.log('Promise 2 resolved', data);
+//     return fetchData('JSON/file2.json');
+// }).then(data => {
+//     console.log('Promise 3 resolved', data);
+//     return fetchData('JSON/file3.json');
+// }).then(data => {
+//     console.log('Promise 4 resolved', data);
+// })
+// .catch(err => {
+//     console.log('Promise rejected', err);
+// });
+
+
+// Fetch Api 
+// Unlike the XMLHttpRequest, there is a much newer and easier way to fetchApi's
+// this involve using fetch() which returns a promise which we can attach a then and catch keyword
+
+// fetch('JSON/file.json').then((response) => {
+//     if(response.status === 200) {
+//         console.log('Promise resolved', response);    
+//     } else {
+//         console.log('error 404');
+//     }
+
+//     return response.json();
+// }).then((data) => {
+//     console.log(data);
+// }).catch((err) => {
+//     console.log('Promise rejected', err);
+// });
+
+// NB: Unlike the older version the fetch() always return response evn if the endpoint is incorrect 
+// to tackle that we need to perform an if check on the status === 200 
+// Also it doesnot return a responseText unlike the older version to get the json file as a JS object
+// we need use the return 'response.json()' and then use it like a promise using the .then()
+
+
+
+// Async Await
+// A much much better way to write the Fetch Api
+// First we create a fuction and use the async keyword to make it non-blocking and in the code block we use the await keyword to make it blocking so we can fetch data sequentially;
+
+
+// console.log(1);
+// console.log(2);
+
+// const fetchData = async () => {
+//     const response = await fetch('JSON/file.json');
+//     const data = await response.json();
+//     // console.log(response);
+
+//     return data;
+// }
+
+// fetchData().then(data => console.log(data));
+
+// console.log(3);
+// console.log(4);
+
+// NB: The async fetchData() is non blocking
+
+// Throwing and Catching Errors
+// if there is an error in the Json file itself it throws accurate result but if it in the url it doesnot to tackle
+// this we need to throw an error under certain conditions i.e if();
+
+// const fetchData = async () => {
+//     const response = await fetch('SON/file.json');
+//     if(response.status !== 200) {
+//         throw new Error('cannot fetch data');
+//     }
+//     const data = await response.json();
+
+//     return data;
+// }
+
+// fetchData()
+//     .then(data => console.log(data))
+//     .catch(err => console.log('Promise rejected', err))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Praticing
+
+// fetch('https://jsonplaceholder.typicode.com/todos/').then((response) =>{
+    
+//     if(response.status === 200){
+//         console.log('Promise resolved', response);    
+//     } else {
+//         throw new Error('cannot fetch data, error 404! :(');
+//     }
+
+//     // To get the json as JS object
+
+//     return response.json();
+
+// }).then((data) => {
+//     console.log(data);
+// })
+// .catch((err) => {
+//     console.log('Promise rejected', err);
+// });
+
+// OR better yet
+
+// const fetchData = async () => {
+//     const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+//         if(response.status !== 200) {
+//             throw new Error('Cannot fetch data');
+//         }
+
+//     const data = await response.json();
+
+//     return data;
+// }
+
+// fetchData()
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err));
+
+
+
+
+
 
 
 

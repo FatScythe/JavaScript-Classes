@@ -1,0 +1,6 @@
+ [
+ 	{"name" : "Omolewa",  "age" : 20, "handsome" : true },
+ 	{"name" : "Damilola", "age" : 18, "handsome" : true },
+ 	{"name" : "Hafiz", "age" : 17, "handsome" : true },
+ 	{"name" : "Deku", "age" : 23, "handsome" : false }
+ ]

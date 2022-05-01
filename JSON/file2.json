@@ -1,0 +1,6 @@
+ [
+ 	{"name" : "Gbenga",  "age" : 23, "handsome" : true },
+ 	{"name" : "Keji", "age" : 29, "handsome" : true },
+ 	{"name" : "Bisola", "age" : 19, "handsome" : true },
+ 	{"name" : "Ayo", "age" : 12, "handsome" : true }
+ ]
