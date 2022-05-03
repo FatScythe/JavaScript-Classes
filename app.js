@@ -1712,30 +1712,89 @@ const now = new Date();
 //     .catch(err => console.log('Promise rejected', err))
 
 
+// EXERCISE
+// After 1s first paragraph turns red
+// After 3s second paragraph turns blue
+// After 2s third paragraph turns red
+// IN SEQUENCE when the button is clicked!!!
+
+// const btn = document.querySelector('.async button');
+// const first = document.querySelector('.async .first');
+// const second = document.querySelector('.async .second');
+// const third = document.querySelector('.async .third');
+
+
+// USING CALLBACK HELL
+
+// btn.addEventListener('click', () => {
+//     setTimeout(() => {
+//         first.style.color = "red";
+    
+
+//         setTimeout(() => {
+//             second.style.color = "blue";
+            
+//             setTimeout(() => {
+//                 third.style.color = "green";
+
+//             }, 2000);
+//         }, 3000);
+//     }, 10000);
+
+// });
 
 
 
 
 
+// USING PROMISES
+// const addColor = (time, selector, color ) => {
+//     const element = document.querySelector(`.async ${selector}`);
+
+//     return new Promise((resolve, reject) => {
+//         if(element) {
+//             setTimeout(() => {
+//                 element.style.color = color;    
+//             }, time);
+//             resolve();    
+//         } else {
+//             throw new Error(`Error! The selector "${selector}" doesnot exist`);
+//             reject();
+//         }
+//     });
+    
+// }
+
+// btn.addEventListener('click', () => {
+//     addColor(1000, '.first', 'red')
+//         .then(() => addColor(3000, '.second', 'blue'))
+//             .then(() => addColor(2000, '.third', 'green'))
+//                 .catch((err) => console.log(err));
+// });
 
 
 
+// USING ASYNC AWAIT
+// const addColor = (selector, color, time) => {
+//         const element = document.querySelector(`.async ${selector}`);
 
+//             setTimeout(() => {
+//                 element.style.color = color;    
+//             }, time);
+    
+// }
 
+// btn.addEventListener('click', () => {
 
+//     const sequence = async () => {
+//         const first = await addColor('.first', 'red', '1000')
+//         const second = await addColor('.second', 'blue', '3000');
+//         const third = await addColor('.third', 'green', '2000')
+//     }
 
+//     sequence();
 
-
-
-
-
-
-
-
-
-
-
-
+// });
 
 
 
@@ -1779,6 +1838,78 @@ const now = new Date();
 // fetchData()
 //     .then(data => console.log(data))
 //     .catch(err => console.log(err));
+
+
+
+// const fetchData = (resources) => {
+//     const request = new XMLHttpRequest();
+
+//     return new Promise((resolve, reject) => {
+//         request.addEventListener('readystatechange', () => {
+        
+//         if(request.readyState === 4 && request.status === 200){
+//             let data = JSON.parse(request.responseText);
+//             resolve(data);
+//             // console.log(data)
+//         }else if(request.readyState === 4) {
+//             reject('Data cannot be fetched');
+//         }
+//     });
+
+//     request.open('GET', resources);
+//     request.send();
+//     });
+    
+// }
+
+// fetchData('JSON/file.json').then((data) => {
+//     console.log(data);
+// }).catch((err) => {
+//     console.log(err);
+// })
+
+
+// const fetchData = (url) => {
+//     fetch(url).then((response) => {
+//     if(response.status === 200) {
+//         // console.log(response)
+//     } else {
+//         throw new Error('error 404! cannot fetch data');
+//     }
+//     return response.json();
+
+//     }).then((data) => {
+//         console.log('Promise resolved', data);
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+// }
+
+// fetchData('JSON/file.json');
+// fetchData('JSON/file2.json');
+// fetchData('JSON/file3.json');
+
+
+
+// const fetchData = async () => {
+//     request = await fetch('JSON/file.json');
+//     if(request.status !== 200){
+//         throw new Error('error data cannot be fetched');
+//     }
+//     data = await request.json();
+//     request2 = await fetch('JSON/file2.json');
+//     data2 = await request2.json();
+
+//     return data, data2;
+// }
+
+// fetchData().then((data) => {
+//     console.log(data);
+//     console.log(data2);
+// }).catch((err) => {
+//     console.log(err);
+// })
 
 
 
