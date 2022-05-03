@@ -1914,11 +1914,29 @@ const now = new Date();
 
 
 
+// OBJECT SHORT HAND NOTATION 
+// In an object when the property is the same as the value we can use a short hand method
+
+// {
+//     name : name, 
+//     age : age,
+//     sex : sex
+// }
+// the above can be written in shorthand as 
+
+// {name, age, sex}
 
 
+// DESTRUCTURING
 
+// if we had an object query like this
 
+// const cityDetails = data.cityDetails;
+// const weather = data.weather;
 
+// instead of writing it like the above we can write it like this
+
+// const {cityDetails, weather} = data;
 
 
 
