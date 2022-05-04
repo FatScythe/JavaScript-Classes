@@ -1938,6 +1938,18 @@ const now = new Date();
 
 // const {cityDetails, weather} = data;
 
+// TERNARY OPERATOR
+// This is a simpler way to check if and else statement e.g
+
+// const result = true ? 'value 1' : 'value 2'; // result = 'value 1'
+
+// instead of writing
+
+// if(condition) {
+//     result = 'value 1'
+// } else {
+//     result = 'value 2'
+// }
 
 
 
