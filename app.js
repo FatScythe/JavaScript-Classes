@@ -1953,11 +1953,68 @@ const now = new Date();
 
 
 
+// LOCAL STORAGE
+
+// It is a window object, it is a way of storing data locally in the browser
+// console.log(window, window.localStorage, localStorage)
+
+// Storing data in local storage
+// localStorage.setItem('name', 'Fahm');
+// localStorage.setItem('age', 21);
+
+// Getting data from local storage
+// let name = localStorage.getItem('name');
+// let age = localStorage.getItem('age');
+
+// console.log(name, age);
+
+// Updating data in Local Storage
+
+// localStorage.setItem('name', 'furqan');
+// localStorage.age = 14;
+
+// name = localStorage.getItem('name');
+// age = localStorage.getItem('age');
+
+// console.log(name, age, localStorage);
+
+// Removing item from Local storage
+
+// localStorage.removeItem('name');
+
+// name = localStorage.getItem('name');
 
 
+// Clear() it removes all the item
+// localStorage.clear();
+
+// name = localStorage.getItem('name');
+
+// age = localStorage.getItem('age');
+
+// console.log(name, age);
+
+// Stringifying and parsing data
+
+// const data = [
+//     {name : "Fahm",   age : 22, handsome: true },
+//     {name : "Fardah", age : 29, handsome : true },
+//     {name : "Furqan", age : 14, handsome : true },
+//     {name : "Gbenga", age : 23, handsome : true }
+//  ];
 
 
+// Converting a JS arrayofObject to a string(json)
 
+// localStorage.setItem('data' , JSON.stringify(data));
+
+// console.log(localStorage);
+
+// Converting back to object
+
+// const stored = localStorage.getItem('data');
+
+// console.log(JSON.parse(stored));
 
 
 
