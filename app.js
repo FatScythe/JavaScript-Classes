@@ -2019,11 +2019,129 @@ const now = new Date();
 
 
 
+// Object Oriented Programming
+// A common misconception about JS is that everything is an object, primitive values are not but they are can be 
+// 1. because JS instantly turn them to object when a method is passed into it
+// 2. by using the new keyword
+// NB: Only null and undefined are the two that cannot be converted into object
+// NB: You can use the new keyword to create an array or object literal
+
+// const nameObj = new String('fahm');
+
+// const numberObj = new Number(22);
+
+// const booleanObj = new Boolean(true);
+
+// console.log(nameObj, numberObj, booleanObj);
+
+// const namesArr = new Array('fahm', 'moon', 'jamo', 'sharaf');
+
+// const property = new Object();
+
+// console.log(namesArr, property)
 
 
 
+// CLASSES
+// Say we wanted to create a user object of multiple user, we could of that using the object literal notation
+
+// const userOne = {
+//     username : 'Scythe',
+//     email : 'scythe@gmail.co.ng',
+//     login() {
+//         console.log(`Welcome ${this.username}`)
+//     },
+//     logout() {
+//         console.log('you are logged out');
+//     }
+// }
+// userOne.login()
 
 
+// const userTwo = {
+//     username : 'smokebane',
+//     email : 'smoke@gmail.co.ng',
+//     login() {
+//         console.log(`Welcome ${this.username}`);
+//     },
+//     logout() {
+//         console.log('you are logged out');
+//     }
+// }
+
+// console.log(userTwo.username)
+
+
+// This immediately becomes a problem if we have a lot of users, we can't manually start input each one to solve that we use 
+
+// CLASSES
+
+// class User {
+//     constructor() {
+//         this.username = 'Scythe';
+//         this.email = 'scythe@gmail.co.uk';
+//     }
+// }
+// const userOne = new User();
+
+// The 'new' keyword
+// 1 - It creates a new empty object {}
+// 2 - It binds the value of 'this' to the new empty object
+// 3 - It calls the constructor function to 'build' the object
+
+class User {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+        this.score = 0;
+    }
+
+    // CLASS METHODS
+    // methods are not defined in the constructor only properties are
+    login(){
+        console.log(`${this.username} is logged in`);
+        return this;
+    }
+
+    logout(){
+        console.log(`${this.username} with email ${this.email} is logged out`);
+        return this;
+    }
+    incScore(){
+        this.score += 1;
+        console.log(`${this.username} score is ${this.score}`);
+        return this;
+    }
+}
+
+// SUBCLASSES OR CLASSES INHERITANCE
+
+class Admin extends User {
+    deleteUser(user){
+        users = users.filter(u => u.username !== user.username)
+    }
+
+}
+
+const userOne = new User('Scythe', 'scythe@gmail.co.uk');
+const userTwo = new User('Smokebane', 'smoke@gmail.com');
+const userZero = new Admin('Admin', 'godcomplex@demi-gods.com');
+
+let users = [userZero, userOne, userTwo]
+
+userZero.deleteUser(userTwo); // Removes userTwo
+// userOne.deleteUser(userTwo); // This will not work, because only the admin subclass can delete user
+ 
+console.log(users, userOne, userTwo, userZero)
+
+userOne.login();
+userTwo.logout();
+
+// CHAINING CLASS METHODS
+// One cannot chain class methods because unless stated otherwise they always return 'undefined'
+// To solve this we return the 'this' keyword so that we can return instances of that object
+
+userOne.login().incScore().incScore().incScore().logout();
 
 
 
