@@ -2089,64 +2089,146 @@ const now = new Date();
 // 2 - It binds the value of 'this' to the new empty object
 // 3 - It calls the constructor function to 'build' the object
 
-class User {
-    constructor(username, email) {
-        this.username = username;
-        this.email = email;
-        this.score = 0;
-    }
+// class User {
+//     constructor(username, email) {
+//         this.username = username;
+//         this.email = email;
+//         this.score = 0;
+//     }
 
     // CLASS METHODS
     // methods are not defined in the constructor only properties are
-    login(){
-        console.log(`${this.username} is logged in`);
-        return this;
-    }
+//     login(){
+//         console.log(`${this.username} is logged in`);
+//         return this;
+//     }
 
-    logout(){
-        console.log(`${this.username} with email ${this.email} is logged out`);
-        return this;
-    }
-    incScore(){
-        this.score += 1;
-        console.log(`${this.username} score is ${this.score}`);
-        return this;
-    }
-}
+//     logout(){
+//         console.log(`${this.username} with email ${this.email} is logged out`);
+//         return this;
+//     }
+//     incScore(){
+//         this.score += 1;
+//         console.log(`${this.username} score is ${this.score}`);
+//         return this;
+//     }
+// }
 
 // SUBCLASSES OR CLASSES INHERITANCE
 
-class Admin extends User {
-    deleteUser(user){
-        users = users.filter(u => u.username !== user.username)
-    }
+// class Admin extends User {
+//     deleteUser(user){
+//         users = users.filter(u => u.username !== user.username)
+//     }
 
-}
+// }
 
-const userOne = new User('Scythe', 'scythe@gmail.co.uk');
-const userTwo = new User('Smokebane', 'smoke@gmail.com');
-const userZero = new Admin('Admin', 'godcomplex@demi-gods.com');
+// SUPER()
+/*
+When creating the admin class we did not need to create a constructor()
+because the admin class will inherit the constructor() of the parent, but if we wanted to add additional
+or custom property to the admin constructor() we would need the super() function to do this */
 
-let users = [userZero, userOne, userTwo]
+// class Admin extends User {
+//     constructor(username, email, title) {
+//         super(username, email)
+//         this.title = title;
+//     }
+//     deleteUser(user){
+//         users = users.filter(u => u.username !== user.username)
+//     }
 
-userZero.deleteUser(userTwo); // Removes userTwo
+// }
+
+// const userOne = new User('Scythe', 'scythe@gmail.co.uk');
+// const userTwo = new User('Smokebane', 'smoke@gmail.com');
+// const userZero = new Admin('fahm', 'holadhayo28@gmail.com', 'Mr');
+
+// console.log(userZero);
+
+// let users = [userZero, userOne, userTwo]
+
+// userZero.deleteUser(userTwo); 
+// // Removes userTwo
 // userOne.deleteUser(userTwo); // This will not work, because only the admin subclass can delete user
  
-console.log(users, userOne, userTwo, userZero)
+// console.log(users, userOne, userTwo, userZero)
 
-userOne.login();
-userTwo.logout();
+// userOne.login();
+// userTwo.logout();
 
 // CHAINING CLASS METHODS
 // One cannot chain class methods because unless stated otherwise they always return 'undefined'
 // To solve this we return the 'this' keyword so that we can return instances of that object
 
-userOne.login().incScore().incScore().incScore().logout();
+// userOne.login().incScore().incScore().incScore().logout();
 
 
 
+// class Car {
+//     constructor(name, color, model) {
+//         this.name = name;
+//         this.color = color;
+//         this.model = model;
+//         this.speed = 20;
+//     }
+
+//     drive() {
+//         console.log(`${this.name} with the color ${this.color} and model ${this.model} is currently on the move`);
+//         return this;
+//     }
+//     brake() {
+//         console.log(`${this.name} with the color ${this.color} and model ${this.model} is currently coming to an halt`);
+//         return this;
+//     }
+//     carSpeed() {
+//         this.speed += 20;
+//         console.log(`${this.name} with the color ${this.color} and model ${this.model} as a speed of ${this.speed}`);
+//         return this;
+//     }
+// }
 
 
+// let car1 = new Car('Tesla', 'Red', 'S');
+// let car2 = new Car('Audi', 'Black', 'GT304');
+// let car3 = new Car('Ford', 'Silver', 'F150');
+// let car4 = new Car('Toyota', 'Blue', 'Big daddy');
+// let cars = [car1, car2, car3, car4];
+
+// console.log(car1.brake().carSpeed().drive().carSpeed())
+// // console.log(car1.drive(), car2.brake(), cars);
+
+
+
+// class Admin extends Car {
+//     deleteCar(vehicle){
+//         cars = cars.filter((c) => {
+//             return c.name !== vehicle.name;
+//         })
+//     }
+// }
+
+// let car0 = new Admin('Bugatti', 'darkblue', 'veyron')
+
+// console.log(car0.deleteCar(car2), cars);
+
+
+
+// OLD CONSTRUCTOR
+// The class is a new way of making object oriented programming in JS, in the past
+
+const User = function (username, email) {
+    this.username = username;
+    this.email = email;
+    this.login = function () {
+        console.log(`${this.username} with the email: ${this.email} is logged in`);
+    }
+}
+
+const user1 = new User('deathscythe', 'holadhayo28@gmail.com');
+const user2 = new User('moonscythe', 'moonleilo7@gmail.com');
+console.log(user1, user2);
+user1.login()
 
 
 
