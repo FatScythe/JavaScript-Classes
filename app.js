@@ -2215,20 +2215,130 @@ or custom property to the admin constructor() we would need the super() function
 
 
 // OLD CONSTRUCTOR
-// The class is a new way of making object oriented programming in JS, in the past
+// The class method is a new way of making object oriented programming in JS, 
+// in the past this was done :
+
+// const User = function (username, email) {
+//     this.username = username;
+//     this.email = email;
+//     this.login = function () {
+//         console.log(`${this.username} with the email: ${this.email} is logged in`);
+//     }
+// }
+
+// const user1 = new User('deathscythe', 'holadhayo28@gmail.com');
+// const user2 = new User('moonscythe', 'moonleilo7@gmail.com');
+
+// console.log(user1, user2);
+// user1.login()
+
+
+// function Car  (name, colour, model) {
+//     this.name = name;
+//     this.colour = colour;
+//     this.model = model;
+
+//     this.drive = function () {
+//         console.log(`This is ${this.name} ${this.model} with the color ${this.colour} is accelerating`);
+//         return this;
+//     }
+//     this.brake = () => {
+//         console.log(`This is ${this.name} ${this.model} with the color ${this.colour} is braking`);
+//         return this;
+//     }
+// }
+
+// const car1 = new Car("Tesla", "red", 'Model X');
+
+// console.log(car1);
+// car1.drive().brake().drive();
+
+
+
+// PROTOTYPE
+// Before the advent of the class constructor, the different methods of a class
+// is stored in its constructor. In order to fix this, we store those method in the __proto__
 
 const User = function (username, email) {
     this.username = username;
     this.email = email;
-    this.login = function () {
-        console.log(`${this.username} with the email: ${this.email} is logged in`);
-    }
+}
+
+// PROTOTYPAL INHERITANCE
+// Unlike the newer method using class constructor which we can inherit into a new class
+// by using the super keyword, here we first use the call() 
+// (It takes in a first argument 'this' i.e referring to the parent class and then the argument of the parent constructor) 
+// keyword to inherit only the constructor and
+// then copy the function or method of the parent class by using Object.create()
+
+function Admin (username, email, title) {
+    // Only gets the constructor of the parents and not its method
+    User.call(this, username, email);
+    
+    this.title = title;
+    
 }
 
 const user1 = new User('deathscythe', 'holadhayo28@gmail.com');
 const user2 = new User('moonscythe', 'moonleilo7@gmail.com');
-console.log(user1, user2);
-user1.login()
+const user0 = new Admin('demigod', 'demigod@gmail.com', 'Sir')
+// console.log(user1, user2);
+// user1.login()
+// In other to store our method we attach prototype to the class name
+
+User.prototype.login = function(){
+    console.log(`${this.username} with the email: ${this.email} is logged in`);
+    return this;
+}
+
+User.prototype.logout = function(){
+    console.log(`${this.username} with the email: ${this.email} is logged out`);
+    return this;
+}
+
+Admin.prototype.deleteUser = function(){
+    // Delete User
+    console.log(`deleted user`)
+    return this;
+}
+
+
+// Its not working :(
+Admin.prototype = Object.create(User.prototype);
+
+Admin.prototype = new Object(User.prototype);
+
+
+console.log(user0)
+
+// user0.login();
+// user0.deleteUser();
+
+// user1.login().logout();
+// console.log(user1, user2, user0)
+
+// user0.deleteUser()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
